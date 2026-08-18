@@ -5,14 +5,13 @@ export const sections = [
   { id: "home", label: "Home" },
   { id: "about", label: "About" },
   { id: "founder", label: "Founder" },
-  { id: "career", label: "Career Development" },
+  { id: "career", label: "Crew Development" },
   { id: "life-at-sea", label: "Life at Sea" },
-  { id: "responsible", label: "Responsible Recruitment" },
-  { id: "training", label: "Training" },
-  { id: "employers", label: "Employers" },
-  { id: "partners", label: "Partners" },
+  { id: "responsible", label: "Responsible Hiring" },
+  { id: "employers", label: "For Employers" },
+  { id: "partners", label: "Network" },
   { id: "updates", label: "Updates" },
-  { id: "register", label: "Registration" },
+  { id: "register", label: "Candidate Portal" },
   { id: "contact", label: "Contact" },
 ];
 
@@ -30,23 +29,34 @@ export function Nav() {
         </a>
 
         <nav className="hidden items-center gap-5 xl:flex">
-          {sections.slice(1, 10).map((s) => (
-            <a
-              key={s.id}
-              href={`#${s.id}`}
-              className="text-[0.78rem] text-primary-foreground/70 transition-colors hover:text-gold"
-            >
-              {s.label}
-            </a>
-          ))}
+          {["about", "founder", "career", "life-at-sea", "responsible", "employers", "contact"].map(
+            (id) => {
+              const s = sections.find((x) => x.id === id)!;
+              return (
+                <a
+                  key={s.id}
+                  href={`#${s.id}`}
+                  className="text-[0.78rem] text-primary-foreground/70 transition-colors hover:text-gold"
+                >
+                  {s.label}
+                </a>
+              );
+            },
+          )}
         </nav>
 
         <div className="flex items-center gap-3">
           <a
-            href="#register"
-            className="hidden rounded-sm border border-gold/60 px-4 py-2 text-[0.72rem] uppercase tracking-[0.16em] text-gold transition-colors hover:bg-gold hover:text-navy-deep sm:inline-block"
+            href="#employers"
+            className="hidden rounded-sm border border-gold/60 px-4 py-2 text-[0.72rem] uppercase tracking-[0.16em] text-gold transition-colors hover:bg-gold hover:text-navy-deep lg:inline-block"
           >
-            Candidate Registration
+            Partner With Us
+          </a>
+          <a
+            href="#register"
+            className="hidden rounded-sm bg-gold px-4 py-2 text-[0.72rem] uppercase tracking-[0.16em] text-navy-deep transition-colors hover:bg-gold-soft sm:inline-block"
+          >
+            Candidate Portal
           </a>
           <button
             type="button"
