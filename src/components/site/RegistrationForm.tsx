@@ -14,13 +14,13 @@ export function RegistrationForm() {
   if (submitted) {
     return (
       <div className="rounded-sm border border-accent/40 bg-card p-8 shadow-elegant">
-        <p className="eyebrow">Interest recorded</p>
-        <h3 className="mt-3 text-2xl">Thank you for your interest</h3>
+        <p className="eyebrow">Profile received</p>
+        <h3 className="mt-3 text-2xl">Thank you — your profile is in our talent repository</h3>
         <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-          Your details have been noted for our candidate interest list. A member of our crew
-          development team will contact you when a screening or preparation session is scheduled.
-          Registration does not constitute a job offer or a guarantee of employment, and no fee is
-          ever charged for registering your interest.
+          Our crew development team will contact you when a screening session, workshop or
+          orientation program is scheduled. Registration enters your profile into our training and
+          screening pool. It does not guarantee employment or constitute a job offer, and no fee is
+          ever charged.
         </p>
       </div>
     );
@@ -34,70 +34,74 @@ export function RegistrationForm() {
           <input required name="name" className={fieldClass} placeholder="As shown on passport" />
         </label>
         <label className="grid gap-1.5 text-sm">
+          <span className="text-muted-foreground">Phone / WhatsApp</span>
+          <input required name="phone" className={fieldClass} placeholder="+95 ..." />
+        </label>
+        <label className="grid gap-1.5 text-sm">
           <span className="text-muted-foreground">Email</span>
           <input required type="email" name="email" className={fieldClass} placeholder="you@email.com" />
         </label>
         <label className="grid gap-1.5 text-sm">
-          <span className="text-muted-foreground">Phone / Viber</span>
-          <input required name="phone" className={fieldClass} placeholder="+95 ..." />
-        </label>
-        <label className="grid gap-1.5 text-sm">
-          <span className="text-muted-foreground">Area of interest</span>
-          <select name="department" className={fieldClass}>
-            <option>Food &amp; Beverage Service</option>
-            <option>Galley / Culinary</option>
-            <option>Housekeeping &amp; Cabin Service</option>
-            <option>Guest Services &amp; Reception</option>
-            <option>Bar &amp; Beverage</option>
-            <option>Retail, Spa &amp; Other</option>
+          <span className="text-muted-foreground">Primary specialty</span>
+          <select name="specialty" className={fieldClass}>
+            <option>Food &amp; Beverage</option>
+            <option>Housekeeping</option>
+            <option>Front Office</option>
+            <option>Other</option>
           </select>
         </label>
         <label className="grid gap-1.5 text-sm">
-          <span className="text-muted-foreground">English level (self-assessed)</span>
+          <span className="text-muted-foreground">Cruise / hotel experience (years)</span>
+          <input
+            name="experience"
+            type="number"
+            min={0}
+            max={50}
+            className={fieldClass}
+            placeholder="0"
+          />
+        </label>
+        <label className="grid gap-1.5 text-sm">
+          <span className="text-muted-foreground">English proficiency level</span>
           <select name="english" className={fieldClass}>
             <option>Basic</option>
-            <option>Conversational</option>
-            <option>Good</option>
+            <option>Intermediate</option>
             <option>Fluent</option>
-          </select>
-        </label>
-        <label className="grid gap-1.5 text-sm">
-          <span className="text-muted-foreground">Hospitality experience</span>
-          <select name="experience" className={fieldClass}>
-            <option>No experience</option>
-            <option>Under 1 year</option>
-            <option>1–3 years</option>
-            <option>3+ years</option>
           </select>
         </label>
       </div>
 
       <label className="mt-4 grid gap-1.5 text-sm">
-        <span className="text-muted-foreground">Brief background (optional)</span>
-        <textarea
-          name="notes"
-          rows={4}
-          className={fieldClass}
-          placeholder="Education, current role, training completed, availability"
+        <span className="text-muted-foreground">Upload CV / Resume</span>
+        <input
+          type="file"
+          name="cv"
+          accept=".pdf,.doc,.docx"
+          className={`${fieldClass} file:mr-3 file:rounded-sm file:border-0 file:bg-secondary file:px-3 file:py-1.5 file:text-xs file:uppercase file:tracking-[0.14em] file:text-foreground`}
         />
       </label>
 
       <label className="mt-5 flex items-start gap-3 text-xs leading-relaxed text-muted-foreground">
         <input required type="checkbox" className="mt-0.5 accent-[var(--gold)]" />
         <span>
-          I understand that GHPs Management Co., Ltd. is building a candidate interest list for
-          future cruise crew career development activities, that registration is free, that it is
-          not an offer of employment, and that placement services will only be provided once the
-          relevant Myanmar regulatory authorization has been obtained.
+          I understand that registration enters my profile into the GHPs Management training and
+          screening pool, that it is free of charge, and that it does not guarantee employment or
+          constitute a job offer. Placement services will be provided only once the relevant
+          Myanmar regulatory authorization has been obtained.
         </span>
       </label>
 
       <button
         type="submit"
-        className="mt-6 w-full rounded-sm bg-navy px-6 py-3 text-[0.78rem] uppercase tracking-[0.16em] text-primary-foreground transition-colors hover:bg-navy-deep md:w-auto"
+        className="mt-6 w-full rounded-sm bg-gold px-6 py-3 text-[0.78rem] uppercase tracking-[0.16em] text-navy-deep transition-colors hover:bg-gold-soft md:w-auto"
       >
-        Submit registration
+        Submit profile
       </button>
+
+      <p className="mt-4 text-xs leading-relaxed text-muted-foreground/80">
+        Note: Registration enters your profile into our training and screening pool. It does not
+        guarantee employment or constitute a job offer.
+      </p>
     </form>
   );
 }
