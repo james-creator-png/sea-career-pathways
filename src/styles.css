@@ -4,6 +4,16 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@theme {
+  --font-sans: "Inter Tight", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Cormorant Garamond", ui-serif, Georgia, serif;
+  --color-navy: var(--navy);
+  --color-navy-deep: var(--navy-deep);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --shadow-elegant: 0 24px 60px -30px color-mix(in oklab, var(--navy) 45%, transparent);
+}
+
 /*
  * Design system definition.
  *
