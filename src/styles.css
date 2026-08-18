@@ -11,7 +11,7 @@
   --color-navy-deep: var(--navy-deep);
   --color-gold: var(--gold);
   --color-gold-soft: var(--gold-soft);
-  --shadow-elegant: 0 24px 60px -30px color-mix(in oklab, var(--navy) 45%, transparent);
+  --shadow-elegant: 0 24px 60px -30px oklch(0.1 0.03 259 / 0.85);
 }
 
 /*
