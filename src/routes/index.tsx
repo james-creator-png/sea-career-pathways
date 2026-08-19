@@ -396,22 +396,22 @@ function Employers() {
       <div className="mx-auto grid max-w-7xl gap-14 px-5 lg:grid-cols-2 lg:px-8">
         <div>
           <p className="eyebrow">For International Employers & Manning Agencies</p>
-          <h2 className="mt-4 text-3xl leading-tight md:text-[2.6rem]">
+          <h2 className="mt-5 text-3xl leading-tight md:text-[2.6rem]">
             Your trusted sourcing & pre-qualification partner in Myanmar
           </h2>
-          <p className="mt-5 text-[0.98rem] leading-relaxed text-primary-foreground/75">
+          <p className="mt-4 text-[0.98rem] leading-relaxed text-primary-foreground/75">
             GHPs Management provides global cruise lines and maritime crew managers with
             operational-ready candidates screened for competence, character, and communication
             skills.
           </p>
           <a
             href="#contact"
-            className="mt-9 inline-block rounded-sm bg-gold px-7 py-3.5 text-[0.78rem] uppercase tracking-[0.16em] text-navy-deep transition-colors hover:bg-gold-soft"
+            className="mt-8 inline-block rounded-sm bg-gold px-7 py-3.5 text-[0.78rem] uppercase tracking-[0.16em] text-navy-deep transition-colors hover:bg-gold-soft"
           >
             Contact Employer Partnerships Team
           </a>
         </div>
-        <ul className="space-y-4 lg:pt-4">
+        <ul className="space-y-4 lg:pt-2">
           {offers.map((o) => (
             <li
               key={o}
@@ -464,7 +464,7 @@ function Partners() {
           </article>
         ))}
       </div>
-      <div className="mt-12 flex items-start gap-4 rounded-sm border border-border bg-card p-7">
+      <div className="mt-10 flex items-start gap-4 rounded-sm border border-border bg-card p-7">
         <GraduationCap className="mt-0.5 shrink-0 text-accent" size={20} strokeWidth={1.5} />
         <p className="text-sm leading-relaxed text-muted-foreground">
           Training institutions and educators interested in joining the network are invited to
@@ -544,10 +544,10 @@ function Contact() {
       <div className="mx-auto grid max-w-7xl gap-14 px-5 lg:grid-cols-2 lg:px-8">
         <div>
           <p className="eyebrow">Contact & Corporate Information</p>
-          <h2 className="mt-4 text-3xl leading-tight md:text-[2.6rem]">
+          <h2 className="mt-5 text-3xl leading-tight md:text-[2.6rem]">
             Connect with our executive team
           </h2>
-          <p className="mt-5 max-w-xl text-[0.98rem] leading-relaxed text-primary-foreground/75">
+          <p className="mt-4 max-w-xl text-[0.98rem] leading-relaxed text-primary-foreground/75">
             GHPs Management Co., Ltd. — Division of Cruise Crew Career Development &amp;
             Recruitment. Registered in DICA, Myanmar.
           </p>
