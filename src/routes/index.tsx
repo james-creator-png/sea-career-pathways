@@ -191,7 +191,7 @@ function Founder() {
           <h2 className="mt-4 text-3xl leading-tight md:text-[2.6rem]">
             Guided by real shipboard leadership
           </h2>
-          <dl className="mt-10 divide-y divide-primary-foreground/15 border-y border-primary-foreground/15">
+          <dl className="mt-8 divide-y divide-primary-foreground/15 border-y border-primary-foreground/15">
             {profile.map((p) => (
               <div key={p.label} className="grid gap-1 py-4 sm:grid-cols-[0.55fr_1fr] sm:gap-6">
                 <dt className="text-[0.68rem] uppercase tracking-[0.18em] text-gold">{p.label}</dt>
@@ -199,7 +199,7 @@ function Founder() {
               </div>
             ))}
           </dl>
-          <blockquote className="mt-8 border-l-2 border-gold pl-6">
+          <blockquote className="mt-6 border-l-2 border-gold pl-6">
             <p className="font-serif text-xl leading-relaxed text-primary-foreground/90">
               &ldquo;Having walked the path from entry-level bar service to shipboard HR leadership
               on top-tier global fleets, I founded this division to ensure our young talent enters
@@ -254,8 +254,8 @@ function CareerDevelopment() {
               <s.icon className="text-accent" size={22} strokeWidth={1.5} />
               <span className="font-serif text-2xl text-muted-foreground/40">0{i + 1}</span>
             </div>
-            <h3 className="mt-5 text-lg">{s.title}</h3>
-            <p className="mt-2.5 text-sm leading-relaxed text-muted-foreground">{s.body}</p>
+            <h3 className="mt-4 text-lg">{s.title}</h3>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{s.body}</p>
           </article>
         ))}
       </div>
@@ -293,10 +293,10 @@ function LifeAtSea() {
         />
         <div>
           <p className="eyebrow">The GHPs preparation model</p>
-          <div className="mt-6 grid gap-px overflow-hidden rounded-sm bg-border sm:grid-cols-2">
+          <div className="mt-5 grid gap-px overflow-hidden rounded-sm bg-border sm:grid-cols-2">
             <div className="bg-card p-6">
               <h3 className="text-sm uppercase tracking-[0.16em] text-accent">What we cultivate</h3>
-              <ul className="mt-4 space-y-3">
+              <ul className="mt-3.5 space-y-3">
                 {cultivate.map((c) => (
                   <li key={c} className="flex gap-3 text-sm text-muted-foreground">
                     <BadgeCheck className="mt-0.5 shrink-0 text-accent" size={16} strokeWidth={1.5} />
@@ -307,7 +307,7 @@ function LifeAtSea() {
             </div>
             <div className="bg-card p-6">
               <h3 className="text-sm uppercase tracking-[0.16em] text-accent">What we demand</h3>
-              <ul className="mt-4 space-y-3">
+              <ul className="mt-3.5 space-y-3">
                 {demand.map((c) => (
                   <li key={c} className="flex gap-3 text-sm text-muted-foreground">
                     <Anchor className="mt-0.5 shrink-0 text-accent" size={16} strokeWidth={1.5} />
@@ -317,7 +317,7 @@ function LifeAtSea() {
               </ul>
             </div>
           </div>
-          <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
+          <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
             We conduct thorough pre-orientation sessions so every candidate fully understands the
             realities of shipboard life before accepting employment.
           </p>
@@ -368,9 +368,9 @@ function ResponsibleRecruitment() {
           </article>
         ))}
       </div>
-      <div className="mt-12 rounded-sm border border-gold/40 bg-navy-deep/60 p-7">
+      <div className="mt-10 rounded-sm border border-gold/40 bg-navy-deep/60 p-7">
         <p className="eyebrow">Important notice</p>
-        <p className="mt-3 max-w-4xl text-sm leading-relaxed text-primary-foreground/80">
+        <p className="mt-2.5 max-w-4xl text-sm leading-relaxed text-primary-foreground/80">
           We publish employment opportunities strictly upon full compliance with local regulatory
           authorizations and verified employer agreements. GHPs Management Co., Ltd. does not
           guarantee employment on board any vessel and does not represent itself as a licensed
