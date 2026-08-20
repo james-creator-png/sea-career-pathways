@@ -5,15 +5,19 @@ export const sections = [
   { id: "home", label: "Home" },
   { id: "about", label: "About" },
   { id: "founder", label: "Founder" },
+  { id: "why", label: "Why We Started" },
   { id: "career", label: "Crew Development" },
-  { id: "life-at-sea", label: "Life at Sea" },
+  { id: "life-at-sea", label: "For Candidates" },
   { id: "responsible", label: "Responsible Hiring" },
   { id: "employers", label: "For Employers" },
-  { id: "partners", label: "Network" },
+  { id: "partners", label: "Working With Us" },
+  { id: "commitment", label: "Commitment" },
+  { id: "roadmap", label: "Future Direction" },
   { id: "updates", label: "Updates" },
   { id: "register", label: "Candidate Portal" },
   { id: "contact", label: "Contact" },
 ];
+
 
 export function Nav() {
   const [open, setOpen] = useState(false);
