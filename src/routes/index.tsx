@@ -815,7 +815,7 @@ function Contact() {
               href: "mailto:contact@crewghpsmanagement.org",
             },
             {
-              icon: Globe,
+              icon: Globe2,
               label: "Website",
               value: "www.crewghpsmanagement.org",
               href: "https://www.crewghpsmanagement.org",
