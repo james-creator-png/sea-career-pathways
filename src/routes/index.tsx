@@ -31,6 +31,7 @@ import heroShip from "@/assets/hero-ship.jpg";
 import trainingImg from "@/assets/training.jpg";
 import lifeAtSeaImg from "@/assets/life-at-sea.jpg";
 import founderImgAsset from "@/assets/founder-photo-v2.png.asset.json";
+import logoAsset from "@/assets/ghps-logo.png.asset.json";
 
 const founderImg = founderImgAsset.url;
 
