@@ -14,7 +14,7 @@ export const sections = [
   { id: "commitment", label: "Commitment" },
   { id: "roadmap", label: "Future Direction" },
   { id: "updates", label: "Updates" },
-  { id: "register", label: "Candidate Portal" },
+  { id: "register", label: "Register Interest" },
   { id: "contact", label: "Contact" },
 ];
 
