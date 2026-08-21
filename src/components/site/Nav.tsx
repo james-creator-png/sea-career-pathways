@@ -14,7 +14,7 @@ export const sections = [
   { id: "commitment", label: "Commitment" },
   { id: "roadmap", label: "Future Direction" },
   { id: "updates", label: "Updates" },
-  { id: "register", label: "Candidate Portal" },
+  { id: "register", label: "Register Interest" },
   { id: "contact", label: "Contact" },
 ];
 
@@ -60,7 +60,7 @@ export function Nav() {
             href="#register"
             className="hidden rounded-sm bg-gold px-4 py-2 text-[0.72rem] uppercase tracking-[0.16em] text-navy-deep transition-colors hover:bg-gold-soft sm:inline-block"
           >
-            Candidate Portal
+            Register Interest
           </a>
           <button
             type="button"

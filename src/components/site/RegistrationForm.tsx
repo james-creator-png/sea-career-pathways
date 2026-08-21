@@ -99,9 +99,10 @@ export function RegistrationForm() {
       </button>
 
       <p className="mt-4 text-xs leading-relaxed text-muted-foreground/80">
-        Note: Registration enters your profile into our training and screening pool. It does not
-        guarantee employment or constitute a job offer.
+        Registration does not constitute a job offer or guarantee of employment. Opportunities are
+        subject to verified vacancies, candidate qualifications and employer selection.
       </p>
+
     </form>
   );
 }
