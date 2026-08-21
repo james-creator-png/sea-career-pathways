@@ -701,10 +701,11 @@ function Registration() {
   return (
     <Section
       id="register"
-      eyebrow="Candidate Registration Portal"
+      eyebrow="Register Your Interest"
       title="Begin your journey toward a career at sea"
-      intro="If you are a motivated hospitality or service professional aiming to join the global cruise industry, submit your profile for upcoming screening sessions, workshops and orientation programs."
+      intro="If you are a motivated hospitality or service professional aiming to join the global cruise industry, register your interest for upcoming screening sessions, workshops and orientation programs. Registration does not constitute a job offer or guarantee of employment."
     >
+
       <div className="max-w-4xl">
         <RegistrationForm />
       </div>
