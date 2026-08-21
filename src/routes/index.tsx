@@ -30,7 +30,7 @@ import { RegistrationForm } from "@/components/site/RegistrationForm";
 import heroShip from "@/assets/hero-ship.jpg";
 import trainingImg from "@/assets/training.jpg";
 import lifeAtSeaImg from "@/assets/life-at-sea.jpg";
-import founderImgAsset from "@/assets/founder-photo.png.asset.json";
+import founderImgAsset from "@/assets/founder-photo-v2.png.asset.json";
 
 const founderImg = founderImgAsset.url;
 
@@ -811,8 +811,8 @@ function Contact() {
             {
               icon: Mail,
               label: "Official email",
-              value: "contact@ghpsmanagement.com",
-              href: "mailto:contact@ghpsmanagement.com",
+              value: "contact@crewghpsmanagement.org",
+              href: "mailto:contact@crewghpsmanagement.org",
             },
             {
               icon: Linkedin,
