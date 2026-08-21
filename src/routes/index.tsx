@@ -30,7 +30,8 @@ import { RegistrationForm } from "@/components/site/RegistrationForm";
 import heroShip from "@/assets/hero-ship.jpg";
 import trainingImg from "@/assets/training.jpg";
 import lifeAtSeaImg from "@/assets/life-at-sea.jpg";
-import founderImgAsset from "@/assets/founder-photo.png.asset.json";
+import founderImgAsset from "@/assets/founder-photo-v2.png.asset.json";
+import logoAsset from "@/assets/ghps-logo.png.asset.json";
 
 const founderImg = founderImgAsset.url;
 
@@ -811,8 +812,14 @@ function Contact() {
             {
               icon: Mail,
               label: "Official email",
-              value: "contact@ghpsmanagement.com",
-              href: "mailto:contact@ghpsmanagement.com",
+              value: "contact@crewghpsmanagement.org",
+              href: "mailto:contact@crewghpsmanagement.org",
+            },
+            {
+              icon: Globe2,
+              label: "Website",
+              value: "www.crewghpsmanagement.org",
+              href: "https://www.crewghpsmanagement.org",
             },
             {
               icon: Linkedin,
@@ -820,6 +827,7 @@ function Contact() {
               value: "james-tun-kyaw-thein",
               href: "https://linkedin.com/in/james-tun-kyaw-thein-10bb3860",
             },
+
           ].map((c) => (
             <div
               key={c.label}
@@ -853,10 +861,18 @@ function Footer() {
   return (
     <footer className="bg-navy-deep py-10 text-primary-foreground/55">
       <div className="mx-auto flex max-w-7xl flex-col gap-4 px-5 text-xs leading-relaxed lg:flex-row lg:items-center lg:justify-between lg:px-8">
-        <p>
-          © {new Date().getFullYear()} GHPs Management Co., Ltd. — Developing Myanmar talent for
-          responsible careers at sea.
-        </p>
+        <div className="flex flex-col gap-3">
+          <img
+            src={logoAsset.url}
+            alt="GHPs Management Co., Ltd. logo"
+            className="h-12 w-auto self-start rounded-sm bg-primary-foreground/95 px-2 py-1"
+          />
+          <p>
+            © {new Date().getFullYear()} GHPs Management Co., Ltd. — Developing Myanmar talent for
+            responsible careers at sea. www.crewghpsmanagement.org
+          </p>
+        </div>
+
         <p className="max-w-2xl">
           Legal Notice: GHPs Management Co., Ltd. operates in full transparency. Official
           announcements are published exclusively through our verified communication channels.
