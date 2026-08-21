@@ -94,18 +94,21 @@ function Hero() {
           Developing Myanmar talent for responsible careers at sea
         </h1>
         <p className="mt-6 max-w-2xl text-base leading-relaxed text-primary-foreground/75">
-          GHPs Management Co., Ltd. is a Myanmar-based management and human resources development
-          company founded by Kyaw Thein (James@TUN). Building on more than three decades of combined
-          experience in international cruise operations, hotel management, hospitality and human
-          resources development, we are establishing a dedicated division that prepares Myanmar
-          professionals for legitimate international careers at sea.
+          Founded by Kyaw Thein (James@TUN), GHPs Management Co., Ltd. builds on more than two
+          decades of international cruise, hotel, hospitality and human resources experience. We are
+          developing a dedicated Cruise Crew Career Development &amp; Recruitment division to prepare
+          Myanmar professionals for legitimate international careers at sea.
+        </p>
+        <p className="mt-4 max-w-2xl font-serif text-lg leading-relaxed text-gold">
+          We do not sell jobs. We prepare candidates for genuine opportunities and employer
+          selection.
         </p>
         <div className="mt-9 flex flex-col gap-3 sm:flex-row">
           <a
             href="#employers"
             className="rounded-sm bg-gold px-7 py-3.5 text-center text-[0.78rem] uppercase tracking-[0.16em] text-navy-deep transition-colors hover:bg-gold-soft"
           >
-            For Employers: Request Talent Profile
+            For Employers: Partner With Us
           </a>
           <a
             href="#register"
@@ -114,6 +117,13 @@ function Hero() {
             For Candidates: Register Interest
           </a>
         </div>
+        <p className="mt-6 max-w-2xl text-sm leading-relaxed text-primary-foreground/70">
+          Founded by a former international cruise professional and HR Assistant Manager with
+          extensive experience in cruise operations, hotel management and people development.{" "}
+          <a href="#founder" className="text-gold underline-offset-4 hover:underline">
+            Meet the founder &rarr;
+          </a>
+        </p>
         <div className="mt-14 grid gap-6 border-t border-primary-foreground/15 pt-8 sm:grid-cols-3">
           {[
             {
@@ -122,11 +132,11 @@ function Hero() {
             },
             {
               k: "A Professional Bridge",
-              v: "Connecting qualified Myanmar talent with reputable cruise lines, shipowners and crewing organizations",
+              v: "Connecting prepared Myanmar talent with reputable international employers",
             },
             {
               k: "Preparation First",
-              v: "We believe successful recruitment begins long before a candidate boards a ship",
+              v: "Developing skills before presenting candidates for opportunity",
             },
           ].map((s) => (
             <div key={s.k}>
@@ -135,6 +145,11 @@ function Hero() {
             </div>
           ))}
         </div>
+        <p className="mt-8 max-w-3xl border-l-2 border-gold/50 pl-4 text-xs leading-relaxed text-primary-foreground/55">
+          GHPs Management is currently developing its international recruitment partnerships and
+          regulatory framework for its Cruise Crew Career Development &amp; Recruitment division.
+        </p>
+
       </div>
     </section>
   );
