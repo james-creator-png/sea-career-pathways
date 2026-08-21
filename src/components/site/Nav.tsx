@@ -25,12 +25,14 @@ export function Nav() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-primary-foreground/10 bg-navy-deep/95 backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-5 py-3 lg:px-8">
-        <a href="#home" className="flex items-baseline gap-2 text-primary-foreground">
-          <span className="font-serif text-xl tracking-tight">GHPs</span>
-          <span className="hidden text-[0.6rem] uppercase tracking-[0.24em] text-gold sm:inline">
-            Management Co., Ltd.
-          </span>
+        <a href="#home" className="flex items-center gap-3 text-primary-foreground">
+          <img
+            src={logoAsset.url}
+            alt="GHPs Management Co., Ltd. — Cruises Crew Career Development and Management"
+            className="h-10 w-auto rounded-sm bg-primary-foreground/95 px-2 py-1 sm:h-12"
+          />
         </a>
+
 
         <nav className="hidden items-center gap-5 xl:flex">
           {["about", "founder", "career", "life-at-sea", "responsible", "employers", "contact"].map(
