@@ -815,11 +815,18 @@ function Contact() {
               href: "mailto:contact@crewghpsmanagement.org",
             },
             {
+              icon: Globe,
+              label: "Website",
+              value: "www.crewghpsmanagement.org",
+              href: "https://www.crewghpsmanagement.org",
+            },
+            {
               icon: Linkedin,
               label: "LinkedIn",
               value: "james-tun-kyaw-thein",
               href: "https://linkedin.com/in/james-tun-kyaw-thein-10bb3860",
             },
+
           ].map((c) => (
             <div
               key={c.label}
