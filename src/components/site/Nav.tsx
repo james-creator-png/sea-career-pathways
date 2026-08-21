@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import logoAsset from "@/assets/ghps-logo.png.asset.json";
+
 
 export const sections = [
   { id: "home", label: "Home" },
