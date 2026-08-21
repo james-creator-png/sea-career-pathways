@@ -60,7 +60,7 @@ export function Nav() {
             href="#register"
             className="hidden rounded-sm bg-gold px-4 py-2 text-[0.72rem] uppercase tracking-[0.16em] text-navy-deep transition-colors hover:bg-gold-soft sm:inline-block"
           >
-            Candidate Portal
+            Register Interest
           </a>
           <button
             type="button"
