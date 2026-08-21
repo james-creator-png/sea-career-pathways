@@ -30,7 +30,9 @@ import { RegistrationForm } from "@/components/site/RegistrationForm";
 import heroShip from "@/assets/hero-ship.jpg";
 import trainingImg from "@/assets/training.jpg";
 import lifeAtSeaImg from "@/assets/life-at-sea.jpg";
-import founderImg from "@/assets/founder.jpg";
+import founderImgAsset from "@/assets/founder-photo.png.asset.json";
+
+const founderImg = founderImgAsset.url;
 
 const TITLE = "GHPs Management — Cruise Crew Career Development & Recruitment";
 const DESCRIPTION =
