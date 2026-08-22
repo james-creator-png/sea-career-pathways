@@ -31,7 +31,7 @@ export function Nav() {
           <img
             src={logoAsset.url}
             alt="GHPs Management Co., Ltd. — Cruises Crew Career Development and Management"
-            className="h-10 w-auto rounded-sm bg-primary-foreground/95 px-2 py-1 sm:h-12"
+            className="h-11 w-auto rounded-sm bg-primary-foreground/95 px-2.5 py-1.5 sm:h-14"
           />
         </a>
 
