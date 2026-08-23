@@ -10,11 +10,17 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CandidateNoticeRouteImport } from './routes/candidate-notice'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CandidateNoticeRoute = CandidateNoticeRouteImport.update({
+  id: '/candidate-notice',
+  path: '/candidate-notice',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacyRoute = PrivacyRouteImport.update({
@@ -25,27 +31,31 @@ const PrivacyRoute = PrivacyRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/candidate-notice': typeof CandidateNoticeRoute
   '/privacy': typeof PrivacyRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/candidate-notice': typeof CandidateNoticeRoute
   '/privacy': typeof PrivacyRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/candidate-notice': typeof CandidateNoticeRoute
   '/privacy': typeof PrivacyRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/privacy'
+  fullPaths: '/' | '/candidate-notice' | '/privacy'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/privacy'
-  id: '__root__' | '/' | '/privacy'
+  to: '/' | '/candidate-notice' | '/privacy'
+  id: '__root__' | '/' | '/candidate-notice' | '/privacy'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CandidateNoticeRoute: typeof CandidateNoticeRoute
   PrivacyRoute: typeof PrivacyRoute
 }
 
@@ -56,6 +66,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/candidate-notice': {
+      id: '/candidate-notice'
+      path: '/candidate-notice'
+      fullPath: '/candidate-notice'
+      preLoaderRoute: typeof CandidateNoticeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacy': {
@@ -70,6 +87,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CandidateNoticeRoute: CandidateNoticeRoute,
   PrivacyRoute: PrivacyRoute,
 }
 export const routeTree = rootRouteImport
