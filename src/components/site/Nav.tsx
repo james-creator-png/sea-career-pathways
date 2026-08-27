@@ -27,7 +27,7 @@ export function Nav() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-primary-foreground/10 bg-navy-deep/95 backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-5 py-3 lg:px-8">
-        <a href="#home" className="flex items-center gap-3 text-primary-foreground">
+        <a href="/#home" className="flex items-center gap-3 text-primary-foreground">
           <img
             src={logoAsset.url}
             alt="GHPs Management Co., Ltd. — Cruises Crew Career Development and Management"
@@ -43,7 +43,7 @@ export function Nav() {
               return (
                 <a
                   key={s.id}
-                  href={`#${s.id}`}
+                  href={`/#${s.id}`}
                   className="text-[0.78rem] text-primary-foreground/70 transition-colors hover:text-gold"
                 >
                   {s.label}
@@ -55,13 +55,13 @@ export function Nav() {
 
         <div className="flex items-center gap-3">
           <a
-            href="#employers"
+            href="/#employers"
             className="hidden rounded-sm border border-gold/60 px-4 py-2 text-[0.72rem] uppercase tracking-[0.16em] text-gold transition-colors hover:bg-gold hover:text-navy-deep lg:inline-block"
           >
             Partner With Us
           </a>
           <a
-            href="#register"
+            href="/#register"
             className="hidden rounded-sm bg-gold px-4 py-2 text-[0.72rem] uppercase tracking-[0.16em] text-navy-deep transition-colors hover:bg-gold-soft sm:inline-block"
           >
             Register Interest
@@ -82,7 +82,7 @@ export function Nav() {
           {sections.map((s) => (
             <a
               key={s.id}
-              href={`#${s.id}`}
+              href={`/#${s.id}`}
               onClick={() => setOpen(false)}
               className="py-1.5 text-sm text-primary-foreground/75 transition-colors hover:text-gold"
             >
