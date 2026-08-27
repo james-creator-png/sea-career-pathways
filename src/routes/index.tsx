@@ -27,6 +27,7 @@ import {
 import { Nav } from "@/components/site/Nav";
 import { Section } from "@/components/site/Section";
 import { RegistrationForm } from "@/components/site/RegistrationForm";
+import { SiteFooter } from "@/components/site/SiteFooter";
 import heroShip from "@/assets/hero-ship.jpg";
 import trainingImg from "@/assets/training.jpg";
 import lifeAtSeaImg from "@/assets/life-at-sea.jpg";
@@ -34,6 +35,9 @@ import founderImgAsset from "@/assets/founder-photo-v2.png.asset.json";
 import logoAsset from "@/assets/ghps-logo.png.asset.json";
 
 const founderImg = founderImgAsset.url;
+
+const SITE_URL = "https://www.crewghpsmanagement.org/";
+const OG_IMAGE = "https://www.crewghpsmanagement.org" + logoAsset.url;
 
 const TITLE = "GHPs Management — Cruise Crew Career Development & Recruitment";
 const DESCRIPTION =
@@ -47,7 +51,28 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESCRIPTION },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: SITE_URL },
+      { property: "og:site_name", content: "GHPs Management Co., Ltd." },
+      { property: "og:image", content: OG_IMAGE },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: OG_IMAGE },
+    ],
+    links: [{ rel: "canonical", href: SITE_URL }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "GHPs Management Co., Ltd.",
+          url: SITE_URL,
+          logo: OG_IMAGE,
+          description: DESCRIPTION,
+          email: "contact@crewghpsmanagement.org",
+          telephone: "+95943170519",
+          address: { "@type": "PostalAddress", addressCountry: "MM", addressLocality: "Yangon" },
+        }),
+      },
     ],
   }),
   component: Index,
@@ -73,7 +98,7 @@ function Index() {
         <Updates />
         <Contact />
       </main>
-      <Footer />
+      <SiteFooter />
     </div>
   );
 }
@@ -147,8 +172,10 @@ function Hero() {
           ))}
         </div>
         <p className="mt-8 max-w-3xl border-l-2 border-gold/50 pl-4 text-xs leading-relaxed text-primary-foreground/55">
-          GHPs Management is currently developing its international recruitment partnerships and
-          regulatory framework for its Cruise Crew Career Development &amp; Recruitment division.
+          GHPs Management is currently developing its regulatory and operational framework for
+          future seafarer recruitment and placement activities and does not represent itself as a
+          licensed seafarer recruitment agency. Present activities are limited to career awareness,
+          training and career-development preparation.
         </p>
 
       </div>
@@ -447,7 +474,7 @@ function ResponsibleRecruitment() {
     {
       icon: ShieldCheck,
       title: "We do not sell jobs",
-      body: "GHPs works only with legitimate and verifiable employment opportunities from established international employers and recruitment partners.",
+      body: "GHPs will work only with legitimate and verifiable employment opportunities, and candidates are never charged for registration, screening or selection.",
     },
     {
       icon: BadgeCheck,
@@ -527,17 +554,19 @@ function Employers() {
             A Myanmar talent-sourcing partner
           </h2>
           <p className="mt-4 text-[0.98rem] leading-relaxed text-primary-foreground/75">
-            GHPs is developing a Myanmar-based candidate sourcing and career-development platform
-            for international cruise and maritime employers. Our founder&rsquo;s international
-            cruise and hotel experience provides first-hand understanding of the expectations placed
-            on crew members in hospitality operations.
+            GHPs is developing the capability to serve as a Myanmar-based candidate sourcing and
+            career-development partner for international cruise and maritime employers. Our
+            founder&rsquo;s international cruise and hotel experience provides first-hand
+            understanding of the expectations placed on crew members in hospitality operations.
           </p>
           <p className="mt-4 text-[0.98rem] leading-relaxed text-primary-foreground/75">
-            We provide international principals with candidates who have been appropriately
-            identified, screened and prepared according to the requirements agreed with the employer
-            or authorized crewing organization. We welcome discussions with established cruise
-            lines, shipowners, crew managers and authorized recruitment organizations interested in
-            developing a reliable Myanmar sourcing channel.
+            Our intention is to present international principals with candidates who have been
+            appropriately identified, screened and prepared according to requirements agreed with
+            the employer or authorized crewing organization. We do not currently hold formal
+            recruitment agreements or guaranteed vacancies, and we work with no named cruise line,
+            shipowner or crewing company as a partner at this stage. We welcome exploratory
+            discussions with established organizations interested in developing a reliable Myanmar
+            sourcing channel.
           </p>
           <a
             href="#contact"
@@ -546,6 +575,10 @@ function Employers() {
             Contact Employer Partnerships Team
           </a>
         </div>
+        <p className="mt-6 max-w-xl text-xs leading-relaxed text-primary-foreground/55 lg:hidden">
+          Services listed are in development. Placement activity will begin only upon completion of
+          the applicable regulatory authorization and a formal employer agreement.
+        </p>
         <ul className="grid gap-3 sm:grid-cols-2 lg:pt-2">
           {offers.map((o) => (
             <li
@@ -602,9 +635,11 @@ function Partners() {
       <div className="mt-10 flex items-start gap-4 rounded-sm border border-border bg-card p-7">
         <GraduationCap className="mt-0.5 shrink-0 text-accent" size={20} strokeWidth={1.5} />
         <p className="text-sm leading-relaxed text-muted-foreground">
-          We also cooperate with maritime training centres, hospitality academies and veteran
+          We intend to cooperate with maritime training centres, hospitality academies and veteran
           industry educators throughout Myanmar and Southeast Asia. Institutions interested in
-          joining the network are invited to contact our executive team.
+          joining the network as it develops are invited to contact our executive team. No named institution
+          or company is presented as a current partner unless a formal relationship has been
+          established.
         </p>
       </div>
     </Section>
@@ -854,30 +889,5 @@ function Contact() {
         </div>
       </div>
     </section>
-  );
-}
-
-function Footer() {
-  return (
-    <footer className="bg-navy-deep py-10 text-primary-foreground/55">
-      <div className="mx-auto flex max-w-7xl flex-col gap-4 px-5 text-xs leading-relaxed lg:flex-row lg:items-center lg:justify-between lg:px-8">
-        <div className="flex flex-col gap-3">
-          <img
-            src={logoAsset.url}
-            alt="GHPs Management Co., Ltd. logo"
-            className="h-12 w-auto self-start rounded-sm bg-primary-foreground/95 px-2 py-1"
-          />
-          <p>
-            © {new Date().getFullYear()} GHPs Management Co., Ltd. — Developing Myanmar talent for
-            responsible careers at sea. www.crewghpsmanagement.org
-          </p>
-        </div>
-
-        <p className="max-w-2xl">
-          Legal Notice: GHPs Management Co., Ltd. operates in full transparency. Official
-          announcements are published exclusively through our verified communication channels.
-        </p>
-      </div>
-    </footer>
   );
 }
