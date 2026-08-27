@@ -5,8 +5,8 @@ export type RegistrationPayload = {
   specialty: string;
   experience: string;
   english: string;
-  notes?: string;
-  cv?: { filename: string; content: string } | null;
+  notes?: string | undefined;
+  cv?: { filename: string; content: string } | null | undefined;
 };
 
 const CONTACT_EMAIL = "contact@crewghpsmanagement.org";
