@@ -238,7 +238,7 @@ function Founder() {
     {
       label: "Key leadership role",
       value:
-        "Recruited from Myanmar by sea chefs and subsequently served on Mein Schiff, where his responsibilities eventually included HR Assistant Manager.",
+        "In the course of his own career he was recruited from Myanmar by sea chefs and subsequently served on Mein Schiff, where his responsibilities eventually included HR Assistant Manager. These are former employers of the founder, not partners of GHPs Management.",
     },
     {
       label: "Return to Myanmar",
