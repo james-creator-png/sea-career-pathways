@@ -31,7 +31,7 @@ import { SiteFooter } from "@/components/site/SiteFooter";
 import heroShip from "@/assets/hero-ship.jpg";
 import trainingImg from "@/assets/training.jpg";
 import lifeAtSeaImg from "@/assets/life-at-sea.jpg";
-import founderImgAsset from "@/assets/founder-photo-v2.png.asset.json";
+import founderImg from "@/assets/founder-photo.jpg";
 
 
 const founderImg = founderImgAsset.url;
