@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
-import logoAsset from "@/assets/ghps-logo.png.asset.json";
+import logo from "@/assets/ghps-logo.png";
 
 
 export const sections = [
@@ -29,7 +29,7 @@ export function Nav() {
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-5 py-3 lg:px-8">
         <a href="/#home" className="flex items-center gap-3 text-primary-foreground">
           <img
-            src={logoAsset.url}
+            src={logo}
             alt="GHPs Management Co., Ltd. — Cruises Crew Career Development and Management"
             className="h-11 w-auto rounded-sm bg-primary-foreground/95 px-2.5 py-1.5 sm:h-14"
           />

@@ -31,13 +31,13 @@ import { SiteFooter } from "@/components/site/SiteFooter";
 import heroShip from "@/assets/hero-ship.jpg";
 import trainingImg from "@/assets/training.jpg";
 import lifeAtSeaImg from "@/assets/life-at-sea.jpg";
-import founderImgAsset from "@/assets/founder-photo-v2.png.asset.json";
-import logoAsset from "@/assets/ghps-logo.png.asset.json";
+import founderImg from "@/assets/founder-photo.jpg";
 
-const founderImg = founderImgAsset.url;
+
+
 
 const SITE_URL = "https://www.crewghpsmanagement.org/";
-const OG_IMAGE = "https://www.crewghpsmanagement.org" + logoAsset.url;
+const OG_IMAGE = "https://www.crewghpsmanagement.org/ghps-logo.png";
 
 const TITLE = "GHPs Management — Cruise Crew Career Development & Recruitment";
 const DESCRIPTION =
