@@ -9,7 +9,7 @@ export type RegistrationPayload = {
   cv?: { filename: string; content: string } | null | undefined;
 };
 
-const CONTACT_EMAIL = "contact@crewghpsmanagement.org";
+const CONTACT_EMAIL = process.env["CONTACT_TO_EMAIL"] || "tunkt76@gmail.com";
 
 function escapeHtml(value: string) {
   return value
