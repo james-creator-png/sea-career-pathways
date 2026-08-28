@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 
-import logoAsset from "@/assets/ghps-logo.png.asset.json";
+import logo from "@/assets/ghps-logo.png";
 
 export function SiteFooter() {
   return (
@@ -8,7 +8,7 @@ export function SiteFooter() {
       <div className="mx-auto flex max-w-7xl flex-col gap-6 px-5 text-xs leading-relaxed lg:flex-row lg:items-start lg:justify-between lg:px-8">
         <div className="flex flex-col gap-3">
           <img
-            src={logoAsset.url}
+            src={logo}
             alt="GHPs Management Co., Ltd. logo — Cruise Crew Career Development & Recruitment"
             className="h-12 w-auto self-start rounded-sm bg-primary-foreground/95 px-2 py-1"
           />
