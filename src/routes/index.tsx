@@ -34,7 +34,7 @@ import lifeAtSeaImg from "@/assets/life-at-sea.jpg";
 import founderImg from "@/assets/founder-photo.jpg";
 
 
-const founderImg = founderImgAsset.url;
+
 
 const SITE_URL = "https://www.crewghpsmanagement.org/";
 const OG_IMAGE = "https://www.crewghpsmanagement.org/ghps-logo.png";
