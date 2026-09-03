@@ -10,12 +10,22 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as CandidateNoticeRouteImport } from './routes/candidate-notice'
 import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
+import { Route as AdminLoginRouteImport } from './routes/admin/login'
+import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin/index'
+import { Route as AuthenticatedAdminProfileRouteImport } from './routes/_authenticated/admin/profile'
+import { Route as AuthenticatedAdminApplicationsIndexRouteImport } from './routes/_authenticated/admin/applications/index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CandidateNoticeRoute = CandidateNoticeRouteImport.update({
@@ -28,35 +38,104 @@ const PrivacyRoute = PrivacyRouteImport.update({
   path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AdminLoginRoute = AdminLoginRouteImport.update({
+  id: '/admin/login',
+  path: '/admin/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AuthenticatedAdminRoute,
+} as any)
+const AuthenticatedAdminProfileRoute =
+  AuthenticatedAdminProfileRouteImport.update({
+    id: '/profile',
+    path: '/profile',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminApplicationsIndexRoute =
+  AuthenticatedAdminApplicationsIndexRouteImport.update({
+    id: '/applications/',
+    path: '/applications/',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/candidate-notice': typeof CandidateNoticeRoute
   '/privacy': typeof PrivacyRoute
+  '/admin': typeof AuthenticatedAdminRouteWithChildren
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/profile': typeof AuthenticatedAdminProfileRoute
+  '/admin/': typeof AuthenticatedAdminIndexRoute
+  '/admin/applications/': typeof AuthenticatedAdminApplicationsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/candidate-notice': typeof CandidateNoticeRoute
   '/privacy': typeof PrivacyRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/profile': typeof AuthenticatedAdminProfileRoute
+  '/admin': typeof AuthenticatedAdminIndexRoute
+  '/admin/applications': typeof AuthenticatedAdminApplicationsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/candidate-notice': typeof CandidateNoticeRoute
   '/privacy': typeof PrivacyRoute
+  '/_authenticated/admin': typeof AuthenticatedAdminRouteWithChildren
+  '/admin/login': typeof AdminLoginRoute
+  '/_authenticated/admin/profile': typeof AuthenticatedAdminProfileRoute
+  '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
+  '/_authenticated/admin/applications/': typeof AuthenticatedAdminApplicationsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/candidate-notice' | '/privacy'
+  fullPaths:
+    | '/'
+    | '/candidate-notice'
+    | '/privacy'
+    | '/admin'
+    | '/admin/login'
+    | '/admin/profile'
+    | '/admin/'
+    | '/admin/applications/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/candidate-notice' | '/privacy'
-  id: '__root__' | '/' | '/candidate-notice' | '/privacy'
+  to:
+    | '/'
+    | '/candidate-notice'
+    | '/privacy'
+    | '/admin/login'
+    | '/admin/profile'
+    | '/admin'
+    | '/admin/applications'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authenticated'
+    | '/candidate-notice'
+    | '/privacy'
+    | '/_authenticated/admin'
+    | '/admin/login'
+    | '/_authenticated/admin/profile'
+    | '/_authenticated/admin/'
+    | '/_authenticated/admin/applications/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   CandidateNoticeRoute: typeof CandidateNoticeRoute
   PrivacyRoute: typeof PrivacyRoute
+  AdminLoginRoute: typeof AdminLoginRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -66,6 +145,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/candidate-notice': {
@@ -82,13 +168,77 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/admin': {
+      id: '/_authenticated/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AuthenticatedAdminRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/admin/login': {
+      id: '/admin/login'
+      path: '/admin/login'
+      fullPath: '/admin/login'
+      preLoaderRoute: typeof AdminLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/admin/': {
+      id: '/_authenticated/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AuthenticatedAdminIndexRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/profile': {
+      id: '/_authenticated/admin/profile'
+      path: '/profile'
+      fullPath: '/admin/profile'
+      preLoaderRoute: typeof AuthenticatedAdminProfileRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/applications/': {
+      id: '/_authenticated/admin/applications/'
+      path: '/applications'
+      fullPath: '/admin/applications/'
+      preLoaderRoute: typeof AuthenticatedAdminApplicationsIndexRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
   }
 }
 
+interface AuthenticatedAdminRouteChildren {
+  AuthenticatedAdminProfileRoute: typeof AuthenticatedAdminProfileRoute
+  AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
+  AuthenticatedAdminApplicationsIndexRoute: typeof AuthenticatedAdminApplicationsIndexRoute
+}
+
+const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
+  AuthenticatedAdminProfileRoute: AuthenticatedAdminProfileRoute,
+  AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
+  AuthenticatedAdminApplicationsIndexRoute:
+    AuthenticatedAdminApplicationsIndexRoute,
+}
+
+const AuthenticatedAdminRouteWithChildren =
+  AuthenticatedAdminRoute._addFileChildren(AuthenticatedAdminRouteChildren)
+
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAdminRoute: typeof AuthenticatedAdminRouteWithChildren
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAdminRoute: AuthenticatedAdminRouteWithChildren,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   CandidateNoticeRoute: CandidateNoticeRoute,
   PrivacyRoute: PrivacyRoute,
+  AdminLoginRoute: AdminLoginRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

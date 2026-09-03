@@ -8,6 +8,7 @@ const fieldClass =
   "w-full rounded-sm border border-border bg-card px-3.5 py-2.5 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground/70 focus:border-accent";
 
 const MAX_CV_BYTES = 4 * 1024 * 1024;
+const ALLOWED_CV_TYPES = ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"];
 
 function readFileAsBase64(file: File): Promise<string> {
   return new Promise((resolve, reject) => {
