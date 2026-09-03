@@ -18,7 +18,7 @@ function AdminDashboard() {
     load().then(setData).catch((reason: unknown) => setError(reason instanceof Error ? reason.message : "Could not load dashboard"));
   }, [load]);
 
-  if (error) return <><AdminPageTitle eyebrow="Overview" title="Dashboard" /><AdminError message={error === "Forbidden" ? "This account is not authorized for the administration workspace." : undefined} /></>;
+  if (error) return <><AdminPageTitle eyebrow="Overview" title="Dashboard" /><AdminError message={error === "Forbidden" ? "This account is not authorized for the administration workspace." : "We could not load the dashboard. Please refresh and try again."} /></>;
   if (!data) return <><AdminPageTitle eyebrow="Overview" title="Dashboard" description="A live view of candidate registrations and review activity." /><AdminLoading /></>;
 
   const cards = [

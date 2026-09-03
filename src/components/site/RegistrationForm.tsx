@@ -8,7 +8,11 @@ const fieldClass =
   "w-full rounded-sm border border-border bg-card px-3.5 py-2.5 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground/70 focus:border-accent";
 
 const MAX_CV_BYTES = 4 * 1024 * 1024;
-const ALLOWED_CV_TYPES = ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"];
+const ALLOWED_CV_TYPES = [
+  "application/pdf",
+  "application/msword",
+  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+];
 
 function readFileAsBase64(file: File): Promise<string> {
   return new Promise((resolve, reject) => {
@@ -38,6 +42,11 @@ export function RegistrationForm() {
       const file = fd.get("cv");
       let cv: { filename: string; content: string } | null = null;
       if (file instanceof File && file.size > 0) {
+        if (!ALLOWED_CV_TYPES.includes(file.type)) {
+          setStatus("error");
+          setErrorMessage("Your CV must be a PDF or Word document (.pdf, .doc or .docx).");
+          return;
+        }
         if (file.size > MAX_CV_BYTES) {
           setStatus("error");
           setErrorMessage("Your CV file is larger than 4 MB. Please upload a smaller file.");
@@ -64,11 +73,7 @@ export function RegistrationForm() {
         form.reset();
       } else {
         setStatus("error");
-        setErrorMessage(
-          result.reason === "not_configured"
-            ? "Our online submission service is not yet active. Please email your details and CV to contact@crewghpsmanagement.org."
-            : "We could not send your registration just now. Please try again, or email contact@crewghpsmanagement.org.",
-        );
+        setErrorMessage(result.message || "We could not save your registration. Please try again.");
       }
     } catch {
       setStatus("error");
