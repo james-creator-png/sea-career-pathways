@@ -131,5 +131,6 @@ export async function findRecentDuplicate(email: string) {
     .eq("email", email)
     .gte("created_at", since)
     .limit(1);
-  return data && data.length > 0 ? data[0]!.id : null;
+  const first = data?.[0];
+  return first?.id ?? null;
 }

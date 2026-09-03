@@ -2,6 +2,7 @@ import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 
 import { sendRegistrationEmail } from "./registration.server";
+import { findRecentDuplicate, saveApplication } from "./applications.server";
 
 const registrationSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(120),

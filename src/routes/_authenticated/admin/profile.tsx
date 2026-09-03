@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { createFileRoute, useRouteContext } from "@tanstack/react-router";
-import { AdminError, AdminPageTitle } from "@/components/admin/AdminShell";
+import { AdminPageTitle } from "@/components/admin/AdminShell";
+import { AdminError } from "@/components/admin/AdminLoading";
 
 export const Route = createFileRoute("/_authenticated/admin/profile")({ component: AdminProfile });
 

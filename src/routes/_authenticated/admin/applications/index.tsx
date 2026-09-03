@@ -3,7 +3,8 @@ import { Link, createFileRoute } from "@tanstack/react-router";
 import { ChevronLeft, ChevronRight, Search } from "lucide-react";
 import { useServerFn } from "@tanstack/react-start";
 import { listApplications, type ApplicationStatus } from "@/lib/admin.functions";
-import { AdminError, AdminLoading, AdminPageTitle, AdminStatus } from "@/components/admin/AdminShell";
+import { AdminPageTitle, AdminStatus } from "@/components/admin/AdminShell";
+import { AdminError, AdminLoading } from "@/components/admin/AdminLoading";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/_authenticated/admin/applications/")({ component: ApplicationsPage });
