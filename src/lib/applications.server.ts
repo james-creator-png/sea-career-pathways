@@ -39,7 +39,7 @@ function base64ToBytes(base64: string) {
 }
 
 export type SaveResult =
-  | { ok: true; id: string; cvStored: boolean }
+  | { ok: true; id: string; cvStored: boolean; submittedAt: string; status: "new" }
   | { ok: false; reason: "invalid_file" | "file_too_large" | "upload_failed" | "database_error"; message: string };
 
 export async function saveApplication(input: StoredApplicationInput): Promise<SaveResult> {
@@ -105,7 +105,7 @@ export async function saveApplication(input: StoredApplicationInput): Promise<Sa
       cv_storage_path: cvPath,
       cv_file_name: cvName,
     })
-    .select("id")
+    .select("id, created_at, status")
     .single();
 
   if (error || !data) {
@@ -120,7 +120,13 @@ export async function saveApplication(input: StoredApplicationInput): Promise<Sa
     };
   }
 
-  return { ok: true, id: data.id, cvStored: Boolean(cvPath) };
+  return {
+    ok: true,
+    id: data.id,
+    cvStored: Boolean(cvPath),
+    submittedAt: data.created_at,
+    status: data.status,
+  };
 }
 
 export async function findRecentDuplicate(email: string) {

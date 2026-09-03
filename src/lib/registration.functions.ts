@@ -64,8 +64,8 @@ export const submitRegistration = createServerFn({ method: "POST" })
     try {
       const notification = await sendRegistrationEmail(data, {
         applicationId: saved.id,
-        status: "new",
-        submittedAt: new Date().toISOString(),
+        status: saved.status,
+        submittedAt: saved.submittedAt,
         position: null,
         cvFileName: data.cv?.filename ?? null,
         cvStored: saved.cvStored,
