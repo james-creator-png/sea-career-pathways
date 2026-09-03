@@ -1,4 +1,5 @@
 import { supabaseAdmin } from "@/integrations/supabase/client.server";
+import type { ApplicationStatus } from "./admin.functions";
 
 export const CV_BUCKET = "candidate-documents";
 export const MAX_CV_BYTES = 4 * 1024 * 1024;
