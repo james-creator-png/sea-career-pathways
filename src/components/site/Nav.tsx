@@ -96,7 +96,15 @@ export function Nav() {
               {s.label}
             </a>
           ))}
+          <a
+            href="/admin/login"
+            onClick={() => setOpen(false)}
+            className="mt-2 inline-flex items-center gap-2 border-t border-primary-foreground/10 pt-3 text-sm text-primary-foreground/75 transition-colors hover:text-gold"
+          >
+            <LockKeyhole size={14} /> Admin Login
+          </a>
         </nav>
+
       )}
     </header>
   );
