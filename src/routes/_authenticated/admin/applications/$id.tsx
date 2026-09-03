@@ -6,6 +6,7 @@ import { addApplicationNote, createApplicationCvUrl, deleteApplication, getAppli
 import { AdminPageTitle, AdminStatus } from "@/components/admin/AdminShell";
 import { AdminError, AdminLoading } from "@/components/admin/AdminLoading";
 import { Button } from "@/components/ui/button";
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 
 export const Route = createFileRoute("/_authenticated/admin/applications/$id")({ component: ApplicationDetail });
 
@@ -25,20 +26,33 @@ function ApplicationDetail() {
   const [busy, setBusy] = useState(false);
   const [cvBusy, setCvBusy] = useState(false);
   const [error, setError] = useState("");
+  const [confirmDelete, setConfirmDelete] = useState(false);
 
   useEffect(() => { load({ data: { id } }).then((result) => { setData(result); setStatus(result.application.status); }).catch((reason: unknown) => setError(reason instanceof Error ? reason.message : "Could not load application")); }, [id, load]);
 
   async function saveStatus() { setBusy(true); setError(""); try { const result = await changeStatus({ data: { id, status } }); setData((current) => current ? { ...current, application: { ...current.application, status: result.status, updated_at: result.updated_at } } : current); } catch (reason) { setError(reason instanceof Error ? reason.message : "Could not update status"); } finally { setBusy(false); } }
   async function saveNote(event: React.FormEvent<HTMLFormElement>) { event.preventDefault(); if (!note.trim()) return; setBusy(true); setError(""); try { const created = await addNote({ data: { id, note } }); setData((current) => current ? { ...current, notes: [created, ...current.notes] } : current); setNote(""); } catch (reason) { setError(reason instanceof Error ? reason.message : "Could not add note"); } finally { setBusy(false); } }
   async function openCv() { setCvBusy(true); setError(""); try { const result = await createCvUrl({ data: { id } }); if (result.url) window.open(result.url, "_blank", "noopener,noreferrer"); else setError("No CV was attached to this application."); } catch (reason) { setError(reason instanceof Error ? reason.message : "Could not create a secure CV link"); } finally { setCvBusy(false); } }
-  async function handleDelete() { if (!window.confirm("Delete this application and its private CV? This action cannot be undone.")) return; setBusy(true); try { await remove({ data: { id } }); await navigate({ to: "/admin/applications" }); } catch (reason) { setError(reason instanceof Error ? reason.message : "Could not delete application"); setBusy(false); } }
+  async function handleDelete() { setConfirmDelete(false); setBusy(true); setError(""); try { await remove({ data: { id } }); await navigate({ to: "/admin/applications" }); } catch (reason) { setError(reason instanceof Error ? reason.message : "Could not delete application"); setBusy(false); } }
 
   if (error && !data) return <><Link to="/admin/applications" className="mb-6 inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-gold"><ArrowLeft size={15} /> Applications</Link><AdminError message={error} /></>;
   if (!data) return <><AdminPageTitle eyebrow="Candidate record" title="Application" /><AdminLoading /></>;
   const { application, notes } = data;
   return <>
     <Link to="/admin/applications" className="mb-6 inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-gold"><ArrowLeft size={15} /> Applications</Link>
-    <div className="flex flex-wrap items-start justify-between gap-5"><AdminPageTitle eyebrow="Candidate record" title={application.full_name} description={`${application.email} · submitted ${new Date(application.created_at).toLocaleString("en-GB")}`} /><Button type="button" variant="outline" className="gap-2 text-destructive hover:bg-destructive/10" onClick={handleDelete} disabled={busy}><Trash2 size={16} /> Delete application</Button></div>
+<div className="flex flex-wrap items-start justify-between gap-5"><AdminPageTitle eyebrow="Candidate record" title={application.full_name} description={`${application.email} · submitted ${new Date(application.created_at).toLocaleString("en-GB")}`} /><Button type="button" variant="outline" className="gap-2 text-destructive hover:bg-destructive/10" onClick={() => setConfirmDelete(true)} disabled={busy}><Trash2 size={16} /> Delete application</Button></div>
+    <AlertDialog open={confirmDelete} onOpenChange={setConfirmDelete}>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Delete this application?</AlertDialogTitle>
+          <AlertDialogDescription>This permanently removes the application record, any private notes, and the candidate's uploaded CV from secure storage. This action cannot be undone.</AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel disabled={busy}>Cancel</AlertDialogCancel>
+          <AlertDialogAction onClick={handleDelete} disabled={busy} className="bg-destructive text-destructive-foreground hover:bg-destructive/90">{busy ? "Deleting…" : "Delete application"}</AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
     {error ? <div className="mb-5"><AdminError message={error} /></div> : null}
     <div className="grid gap-6 xl:grid-cols-[1.45fr_0.85fr]">
       <div className="grid gap-6">
