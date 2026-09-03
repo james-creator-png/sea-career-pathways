@@ -29,9 +29,9 @@ function AdminLogin() {
     event.preventDefault();
     setBusy(true);
     setError("");
-    const result = await supabase.auth.signInWithPassword({ email: email.trim(), password });
+    const result = await supabase.auth.signInWithPassword({ email: email.trim().toLowerCase(), password });
     if (result.error) {
-      setError("Sign in failed. Check your email and password, then try again.");
+      setError(`Sign in failed: ${result.error.message}. Check your email and password, then try again.`);
       setBusy(false);
       return;
     }
