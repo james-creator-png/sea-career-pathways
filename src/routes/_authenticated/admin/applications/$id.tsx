@@ -40,7 +40,19 @@ function ApplicationDetail() {
   const { application, notes } = data;
   return <>
     <Link to="/admin/applications" className="mb-6 inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-gold"><ArrowLeft size={15} /> Applications</Link>
-    <div className="flex flex-wrap items-start justify-between gap-5"><AdminPageTitle eyebrow="Candidate record" title={application.full_name} description={`${application.email} · submitted ${new Date(application.created_at).toLocaleString("en-GB")}`} /><Button type="button" variant="outline" className="gap-2 text-destructive hover:bg-destructive/10" onClick={handleDelete} disabled={busy}><Trash2 size={16} /> Delete application</Button></div>
+<div className="flex flex-wrap items-start justify-between gap-5"><AdminPageTitle eyebrow="Candidate record" title={application.full_name} description={`${application.email} · submitted ${new Date(application.created_at).toLocaleString("en-GB")}`} /><Button type="button" variant="outline" className="gap-2 text-destructive hover:bg-destructive/10" onClick={() => setConfirmDelete(true)} disabled={busy}><Trash2 size={16} /> Delete application</Button></div>
+    <AlertDialog open={confirmDelete} onOpenChange={setConfirmDelete}>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Delete this application?</AlertDialogTitle>
+          <AlertDialogDescription>This permanently removes the application record, any private notes, and the candidate's uploaded CV from secure storage. This action cannot be undone.</AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel disabled={busy}>Cancel</AlertDialogCancel>
+          <AlertDialogAction onClick={handleDelete} disabled={busy} className="bg-destructive text-destructive-foreground hover:bg-destructive/90">{busy ? "Deleting…" : "Delete application"}</AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
     {error ? <div className="mb-5"><AdminError message={error} /></div> : null}
     <div className="grid gap-6 xl:grid-cols-[1.45fr_0.85fr]">
       <div className="grid gap-6">
