@@ -26,9 +26,12 @@ function readFileAsBase64(file: File): Promise<string> {
   });
 }
 
+type SubmissionNotice = "delivered" | "not-delivered" | "duplicate";
+
 export function RegistrationForm() {
   const send = useServerFn(submitRegistration);
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [submissionNotice, setSubmissionNotice] = useState<SubmissionNotice | null>(null);
   const [errorMessage, setErrorMessage] = useState("");
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
