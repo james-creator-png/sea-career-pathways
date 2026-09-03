@@ -6,6 +6,7 @@ import { addApplicationNote, createApplicationCvUrl, deleteApplication, getAppli
 import { AdminPageTitle, AdminStatus } from "@/components/admin/AdminShell";
 import { AdminError, AdminLoading } from "@/components/admin/AdminLoading";
 import { Button } from "@/components/ui/button";
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 
 export const Route = createFileRoute("/_authenticated/admin/applications/$id")({ component: ApplicationDetail });
 
