@@ -33,6 +33,7 @@ export type RegistrationResult =
 export const submitRegistration = createServerFn({ method: "POST" })
   .inputValidator((data: unknown) => registrationSchema.parse(data))
   .handler(async ({ data }): Promise<RegistrationResult> => {
+    const { findRecentDuplicate, saveApplication } = await import("./applications.server");
     const duplicate = await findRecentDuplicate(data.email);
     if (duplicate) {
       return { ok: true, duplicate: true };
