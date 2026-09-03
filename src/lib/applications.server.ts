@@ -40,7 +40,7 @@ function base64ToBytes(base64: string) {
 }
 
 export type SaveResult =
-  | { ok: true; id: string; cvStored: boolean; submittedAt: string; status: "new" }
+  | { ok: true; id: string; cvStored: boolean; submittedAt: string; status: ApplicationStatus }
   | { ok: false; reason: "invalid_file" | "file_too_large" | "upload_failed" | "database_error"; message: string };
 
 export async function saveApplication(input: StoredApplicationInput): Promise<SaveResult> {
