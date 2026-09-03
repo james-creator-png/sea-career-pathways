@@ -77,6 +77,7 @@ export function RegistrationForm() {
       });
 
       if (result.ok) {
+        setSubmissionNotice(result.duplicate ? "duplicate" : result.emailDelivered ? "delivered" : "not-delivered");
         setStatus("sent");
         form.reset();
       } else {
