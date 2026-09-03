@@ -17,6 +17,7 @@ const registrationSchema = z.object({
   experience: z.string().trim().max(3).default(""),
   english: z.string().trim().min(1).max(40),
   notes: z.string().trim().max(1000).optional(),
+  consent: z.literal(true, { errorMap: () => ({ message: "Privacy acknowledgement is required" }) }),
   cv: z
     .object({
       filename: z.string().trim().min(1).max(200),
@@ -57,11 +58,24 @@ export const submitRegistration = createServerFn({ method: "POST" })
       return { ok: false, reason: saved.reason, message: saved.message };
     }
 
-    // Notification email is best-effort: the application is already stored securely.
     try {
-      await sendRegistrationEmail(data);
+      const notification = await sendRegistrationEmail(data);
+      if (!notification.ok) {
+        return {
+          ok: false,
+          reason: notification.reason,
+          message:
+            "Your profile was saved securely, but we could not deliver the notification email. Please email your details and CV to contact@crewghpsmanagement.org.",
+        };
+      }
     } catch (error) {
       console.error("[registration] notification email failed", error);
+      return {
+        ok: false,
+        reason: "send_failed",
+        message:
+          "Your profile was saved securely, but we could not deliver the notification email. Please email your details and CV to contact@crewghpsmanagement.org.",
+      };
     }
 
     return { ok: true };

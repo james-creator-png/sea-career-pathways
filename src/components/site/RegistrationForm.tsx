@@ -42,7 +42,10 @@ export function RegistrationForm() {
       const file = fd.get("cv");
       let cv: { filename: string; content: string } | null = null;
       if (file instanceof File && file.size > 0) {
-        if (!ALLOWED_CV_TYPES.includes(file.type)) {
+        const extension = file.name.split(".").pop()?.toLowerCase();
+        const hasAllowedType = ALLOWED_CV_TYPES.includes(file.type);
+        const hasAllowedExtension = ["pdf", "doc", "docx"].includes(extension || "");
+        if (!hasAllowedType && !hasAllowedExtension) {
           setStatus("error");
           setErrorMessage("Your CV must be a PDF or Word document (.pdf, .doc or .docx).");
           return;
@@ -64,6 +67,7 @@ export function RegistrationForm() {
           experience: String(fd.get("experience") || ""),
           english: String(fd.get("english") || ""),
           notes: String(fd.get("notes") || ""),
+          consent: fd.get("consent") === "on",
           cv,
         },
       });
