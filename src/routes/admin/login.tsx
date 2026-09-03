@@ -29,14 +29,25 @@ function AdminLogin() {
     event.preventDefault();
     setBusy(true);
     setError("");
-    const result = await supabase.auth.signInWithPassword({ email: email.trim().toLowerCase(), password });
-    if (result.error) {
-      setError(`Sign in failed: ${result.error.message}. Check your email and password, then try again.`);
+    try {
+      const result = await Promise.race([
+        supabase.auth.signInWithPassword({ email: email.trim().toLowerCase(), password }),
+        new Promise<never>((_, reject) => setTimeout(() => reject(new Error("The sign in request timed out. Please check your connection and try again.")), 20000)),
+      ]);
+      if (result.error) {
+        setError(`Sign in failed: ${result.error.message}. Check your email and password, then try again.`);
+        return;
+      }
+      await navigate({ to: "/admin", replace: true });
+    } catch (cause) {
+      const message = cause instanceof Error ? cause.message : "Unexpected error during sign in.";
+      setError(`Sign in failed: ${message}`);
+      if (typeof window !== "undefined") console.error("[admin-login]", cause);
+    } finally {
       setBusy(false);
-      return;
     }
-    await navigate({ to: "/admin", replace: true });
   }
+
 
   return <main className="grid min-h-screen place-items-center bg-navy-deep px-5 py-12">
     <div className="w-full max-w-md border border-primary-foreground/15 bg-background p-7 shadow-elegant sm:p-9">
