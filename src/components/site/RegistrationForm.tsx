@@ -101,11 +101,12 @@ export function RegistrationForm() {
         <p className="eyebrow">Registration received</p>
         <h3 className="mt-3 text-2xl">Thank you — your profile has reached our team</h3>
         <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-          Your details have been sent to contact@crewghpsmanagement.org. Our crew development team
-          will contact you when a screening session, workshop or orientation programme is scheduled.
-          Registration enters your profile into our training and screening pool. It does not
-          constitute a job offer, guarantee of employment or placement commitment, and no fee is
-          ever charged.
+          {submissionNotice === "delivered"
+            ? "Your application was saved securely and the notification was sent to contact@crewghpsmanagement.org."
+            : submissionNotice === "duplicate"
+              ? "We already received an application from this email address recently. Your existing application remains in our secure review system."
+              : "Your application was saved securely and is visible to our admin team. The notification email could not be delivered, so please email your details and CV to contact@crewghpsmanagement.org."}{" "}
+          Our crew development team will contact you when a screening session, workshop or orientation programme is scheduled. Registration enters your profile into our training and screening pool. It does not constitute a job offer, guarantee of employment or placement commitment, and no fee is ever charged.
         </p>
         <button
           type="button"
