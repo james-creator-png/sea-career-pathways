@@ -27,7 +27,7 @@ const registrationSchema = z.object({
 });
 
 export type RegistrationResult =
-  | { ok: true; duplicate?: boolean }
+  | { ok: true; duplicate?: boolean; emailDelivered?: boolean }
   | { ok: false; reason: string; message: string };
 
 export const submitRegistration = createServerFn({ method: "POST" })
@@ -58,25 +58,30 @@ export const submitRegistration = createServerFn({ method: "POST" })
       return { ok: false, reason: saved.reason, message: saved.message };
     }
 
+    // The database is the source of truth. A failed notification email must never
+    // fail the submission, delete the record, or hide it from the admin dashboard.
+    let emailDelivered = false;
     try {
-      const notification = await sendRegistrationEmail(data);
+      const notification = await sendRegistrationEmail(data, {
+        applicationId: saved.id,
+        status: "new",
+        submittedAt: new Date().toISOString(),
+        position: null,
+        cvFileName: data.cv?.filename ?? null,
+        cvStored: saved.cvStored,
+      });
+      emailDelivered = notification.ok;
       if (!notification.ok) {
-        return {
-          ok: false,
-          reason: notification.reason,
-          message:
-            "Your profile was saved securely, but we could not deliver the notification email. Please email your details and CV to contact@crewghpsmanagement.org.",
-        };
+        console.error(
+          "[registration] admin notification not delivered",
+          notification.reason,
+          "application:",
+          saved.id,
+        );
       }
     } catch (error) {
-      console.error("[registration] notification email failed", error);
-      return {
-        ok: false,
-        reason: "send_failed",
-        message:
-          "Your profile was saved securely, but we could not deliver the notification email. Please email your details and CV to contact@crewghpsmanagement.org.",
-      };
+      console.error("[registration] notification email failed", saved.id, error);
     }
 
-    return { ok: true };
+    return { ok: true, emailDelivered };
   });
