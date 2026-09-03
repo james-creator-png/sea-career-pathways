@@ -39,6 +39,7 @@ export function RegistrationForm() {
     const form = e.currentTarget;
     const fd = new FormData(form);
     setStatus("sending");
+    setSubmissionNotice(null);
     setErrorMessage("");
 
     try {
