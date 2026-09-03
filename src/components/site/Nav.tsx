@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { LockKeyhole, Menu, X } from "lucide-react";
 import logo from "@/assets/ghps-logo.png";
 
 
@@ -66,6 +66,13 @@ export function Nav() {
           >
             Register Interest
           </a>
+          <a
+            href="/admin/login"
+            className="hidden items-center gap-1.5 rounded-sm border border-primary-foreground/25 px-3.5 py-2 text-[0.72rem] uppercase tracking-[0.16em] text-primary-foreground/80 transition-colors hover:border-gold/60 hover:text-gold sm:inline-flex"
+          >
+            <LockKeyhole size={13} /> Admin Login
+          </a>
+
           <button
             type="button"
             aria-label="Toggle navigation"
@@ -89,7 +96,15 @@ export function Nav() {
               {s.label}
             </a>
           ))}
+          <a
+            href="/admin/login"
+            onClick={() => setOpen(false)}
+            className="mt-2 inline-flex items-center gap-2 border-t border-primary-foreground/10 pt-3 text-sm text-primary-foreground/75 transition-colors hover:text-gold"
+          >
+            <LockKeyhole size={14} /> Admin Login
+          </a>
         </nav>
+
       )}
     </header>
   );
