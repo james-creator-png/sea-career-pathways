@@ -26,13 +26,14 @@ function ApplicationDetail() {
   const [busy, setBusy] = useState(false);
   const [cvBusy, setCvBusy] = useState(false);
   const [error, setError] = useState("");
+  const [confirmDelete, setConfirmDelete] = useState(false);
 
   useEffect(() => { load({ data: { id } }).then((result) => { setData(result); setStatus(result.application.status); }).catch((reason: unknown) => setError(reason instanceof Error ? reason.message : "Could not load application")); }, [id, load]);
 
   async function saveStatus() { setBusy(true); setError(""); try { const result = await changeStatus({ data: { id, status } }); setData((current) => current ? { ...current, application: { ...current.application, status: result.status, updated_at: result.updated_at } } : current); } catch (reason) { setError(reason instanceof Error ? reason.message : "Could not update status"); } finally { setBusy(false); } }
   async function saveNote(event: React.FormEvent<HTMLFormElement>) { event.preventDefault(); if (!note.trim()) return; setBusy(true); setError(""); try { const created = await addNote({ data: { id, note } }); setData((current) => current ? { ...current, notes: [created, ...current.notes] } : current); setNote(""); } catch (reason) { setError(reason instanceof Error ? reason.message : "Could not add note"); } finally { setBusy(false); } }
   async function openCv() { setCvBusy(true); setError(""); try { const result = await createCvUrl({ data: { id } }); if (result.url) window.open(result.url, "_blank", "noopener,noreferrer"); else setError("No CV was attached to this application."); } catch (reason) { setError(reason instanceof Error ? reason.message : "Could not create a secure CV link"); } finally { setCvBusy(false); } }
-  async function handleDelete() { if (!window.confirm("Delete this application and its private CV? This action cannot be undone.")) return; setBusy(true); try { await remove({ data: { id } }); await navigate({ to: "/admin/applications" }); } catch (reason) { setError(reason instanceof Error ? reason.message : "Could not delete application"); setBusy(false); } }
+  async function handleDelete() { setConfirmDelete(false); setBusy(true); setError(""); try { await remove({ data: { id } }); await navigate({ to: "/admin/applications" }); } catch (reason) { setError(reason instanceof Error ? reason.message : "Could not delete application"); setBusy(false); } }
 
   if (error && !data) return <><Link to="/admin/applications" className="mb-6 inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-gold"><ArrowLeft size={15} /> Applications</Link><AdminError message={error} /></>;
   if (!data) return <><AdminPageTitle eyebrow="Candidate record" title="Application" /><AdminLoading /></>;
